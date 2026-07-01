@@ -1,13 +1,12 @@
 const navToggle = document.querySelector('.nav-toggle');
 const siteNav = document.querySelector('.site-nav');
-const siteHeader = document.querySelector('.site-header'); // Grabbed header node for mobile css targeting
+const siteHeader = document.querySelector('.site-header'); 
 const yearElement = document.getElementById('year');
 
 if (navToggle && siteNav) {
   const updateToggleState = () => {
     const isOpen = siteNav.classList.contains('active');
     navToggle.setAttribute('aria-expanded', String(isOpen));
-    
     if (siteHeader) {
       siteHeader.classList.toggle('nav-active', isOpen);
     }
@@ -15,11 +14,6 @@ if (navToggle && siteNav) {
 
   const closeNav = () => {
     siteNav.classList.remove('active');
-    updateToggleState();
-  };
-
-  const openNav = () => {
-    siteNav.classList.add('active');
     updateToggleState();
   };
 
@@ -52,23 +46,110 @@ if (yearElement) {
   yearElement.textContent = new Date().getFullYear();
 }
 
-// Create fullscreen modal HTML
-const fullscreenModal = document.createElement('div');
-fullscreenModal.className = 'fullscreen-modal hidden';
-fullscreenModal.innerHTML = `
-  <button class="fullscreen-close" aria-label="Close fullscreen">✕</button>
-  <div class="fullscreen-content">
-    <img class="fullscreen-image" src="" alt="" />
-    <div class="fullscreen-nav">
-      <button class="fullscreen-prev" aria-label="Previous image">❮</button>
-      <button class="fullscreen-next" aria-label="Next image">❯</button>
-    </div>
-    <div class="fullscreen-counter"></div>
-  </div>
-`;
-document.body.appendChild(fullscreenModal);
+/* ==========================================================================
+   Bulletproof Fullscreen Lightbox Engine
+   ========================================================================== */
 
-// Gallery Navigation
+// 1. Safe Modal Element Generation Check
+let fullscreenModal = document.querySelector('.fullscreen-modal');
+if (!fullscreenModal) {
+  fullscreenModal = document.createElement('div');
+  fullscreenModal.className = 'fullscreen-modal hidden';
+  fullscreenModal.innerHTML = `
+    <button class="fullscreen-close" aria-label="Close fullscreen">✕</button>
+    <div class="fullscreen-content">
+      <img class="fullscreen-image" src="" alt="" />
+      <div class="fullscreen-nav">
+        <button class="fullscreen-prev" aria-label="Previous image">❮</button>
+        <button class="fullscreen-next" aria-label="Next image">❯</button>
+      </div>
+      <div class="fullscreen-counter"></div>
+    </div>
+  `;
+  document.body.appendChild(fullscreenModal);
+}
+
+// Global Modal Element Reference Hooks
+const modalImage = fullscreenModal.querySelector('.fullscreen-image');
+const modalCounter = fullscreenModal.querySelector('.fullscreen-counter');
+const modalPrevBtn = fullscreenModal.querySelector('.fullscreen-prev');
+const modalNextBtn = fullscreenModal.querySelector('.fullscreen-next');
+const modalCloseBtn = fullscreenModal.querySelector('.fullscreen-close');
+
+// Global state controller mapping strings
+let activeImagesArray = [];
+let activeIndex = 0;
+
+const updateModalView = () => {
+  if (!modalImage || activeImagesArray.length === 0) return;
+  
+  const currentImg = activeImagesArray[activeIndex];
+  modalImage.src = currentImg.src;
+  modalImage.alt = currentImg.alt;
+  
+  if (modalCounter) {
+    if (activeImagesArray.length > 1) {
+      modalCounter.style.display = 'block';
+      modalCounter.textContent = `${activeIndex + 1} / ${activeImagesArray.length}`;
+    } else {
+      modalCounter.style.display = 'none';
+    }
+  }
+  
+  if (modalPrevBtn && modalNextBtn) {
+    const displayStyle = activeImagesArray.length > 1 ? 'flex' : 'none';
+    modalPrevBtn.style.display = displayStyle;
+    modalNextBtn.style.display = displayStyle;
+  }
+};
+
+const openFullscreenModal = (images, index) => {
+  activeImagesArray = Array.from(images);
+  activeIndex = index;
+  updateModalView();
+  fullscreenModal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+};
+
+const closeFullscreenModal = () => {
+  fullscreenModal.classList.add('hidden');
+  document.body.style.overflow = '';
+};
+
+// Global Listeners for Lightbox Management
+modalCloseBtn?.addEventListener('click', closeFullscreenModal);
+fullscreenModal?.addEventListener('click', (e) => {
+  if (e.target === fullscreenModal) closeFullscreenModal();
+});
+
+modalPrevBtn?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  activeIndex = (activeIndex - 1 + activeImagesArray.length) % activeImagesArray.length;
+  updateModalView();
+});
+
+modalNextBtn?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  activeIndex = (activeIndex + 1) % activeImagesArray.length;
+  updateModalView();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (fullscreenModal.classList.contains('hidden')) return;
+  if (e.key === 'Escape') closeFullscreenModal();
+  if (e.key === 'ArrowLeft' && activeImagesArray.length > 1) {
+    activeIndex = (activeIndex - 1 + activeImagesArray.length) % activeImagesArray.length;
+    updateModalView();
+  }
+  if (e.key === 'ArrowRight' && activeImagesArray.length > 1) {
+    activeIndex = (activeIndex + 1) % activeImagesArray.length;
+    updateModalView();
+  }
+});
+
+/* ==========================================================================
+   Cards Component Initialization Loop
+   ========================================================================== */
 document.querySelectorAll('.project-card').forEach((card) => {
   const track = card.querySelector('.gallery-track');
   const images = card.querySelectorAll('.gallery-track img');
@@ -76,178 +157,64 @@ document.querySelectorAll('.project-card').forEach((card) => {
   const prevBtn = card.querySelector('.gallery-prev');
   const nextBtn = card.querySelector('.gallery-next');
   const controls = card.querySelector('.gallery-controls');
-  const fullscreenBtn = card.querySelector('.gallery-fullscreen');
   
   if (!track || images.length === 0) return;
 
   let currentIndex = 0;
   const totalImages = images.length;
 
-  // Hide navigation if only one image
-  if (totalImages === 1) {
+  if (totalImages === 1 && controls) {
     controls.classList.add('hidden');
   }
 
-  const updateGallery = (index) => {
+  const updateCardGallery = (index) => {
     currentIndex = (index + totalImages) % totalImages;
-    const offset = currentIndex * (-100);
-    
-    track.style.transform = `translateX(${offset}%)`;
-    
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentIndex);
-    });
+    track.style.transform = `translateX(${currentIndex * -100}%)`;
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
   };
 
-  const goToPrevious = () => {
-    updateGallery(currentIndex - 1);
-  };
-
-  const goToNext = () => {
-    updateGallery(currentIndex + 1);
-  };
-
-  const goToImage = (index) => {
-    updateGallery(index);
-  };
-
-  const openFullscreen = () => {
-    const img = images[currentIndex];
-    const fullscreenImage = fullscreenModal.querySelector('.fullscreen-image');
-    const counter = fullscreenModal.querySelector('.fullscreen-counter');
-    
-    fullscreenImage.src = img.src;
-    fullscreenImage.alt = img.alt;
-    
-    if (totalImages > 1) {
-      counter.textContent = `${currentIndex + 1} / ${totalImages}`;
-    } else {
-      counter.style.display = 'none';
-    }
-    
-    fullscreenModal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-
-    syncFullscreenNav();
-  };
-
-  const closeFullscreen = () => {
-    fullscreenModal.classList.add('hidden');
-    document.body.style.overflow = '';
-  };
-
-  const syncFullscreenNav = () => {
-    const fullscreenPrevBtn = fullscreenModal.querySelector('.fullscreen-prev');
-    const fullscreenNextBtn = fullscreenModal.querySelector('.fullscreen-next');
-    const counter = fullscreenModal.querySelector('.fullscreen-counter');
-    const fullscreenImage = fullscreenModal.querySelector('.fullscreen-image');
-
-    if (totalImages === 1) {
-      fullscreenPrevBtn.style.display = 'none';
-      fullscreenNextBtn.style.display = 'none';
-    } else {
-      fullscreenPrevBtn.style.display = 'flex';
-      fullscreenNextBtn.style.display = 'flex';
-    }
-
-    const handleFullscreenPrev = () => {
-      goToPrevious();
-      const img = images[currentIndex];
-      fullscreenImage.src = img.src;
-      fullscreenImage.alt = img.alt;
-      counter.textContent = `${currentIndex + 1} / ${totalImages}`;
-    };
-
-    const handleFullscreenNext = () => {
-      goToNext();
-      const img = images[currentIndex];
-      fullscreenImage.src = img.src;
-      fullscreenImage.alt = img.alt;
-      counter.textContent = `${currentIndex + 1} / ${totalImages}`;
-    };
-
-    // Remove old listeners and add new ones
-    fullscreenPrevBtn.onclick = handleFullscreenPrev;
-    fullscreenNextBtn.onclick = handleFullscreenNext;
-  };
-
-  prevBtn?.addEventListener('click', goToPrevious);
-  nextBtn?.addEventListener('click', goToNext);
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => goToImage(index));
+  prevBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    updateCardGallery(currentIndex - 1);
   });
-
-  // Fullscreen functionality
-  fullscreenBtn?.addEventListener('click', openFullscreen);
   
-  // Click on image to open fullscreen
-  images.forEach((img) => {
-    img.addEventListener('click', openFullscreen);
+  nextBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    updateCardGallery(currentIndex + 1);
+  });
+  
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      updateCardGallery(index);
+    });
   });
 
-  // Keyboard navigation in gallery
-  card.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      goToPrevious();
-    } else if (e.key === 'ArrowRight') {
-      goToNext();
-    }
+  // Isolated Fullscreen Click Launcher
+  const launchFullscreen = (index) => {
+    openFullscreenModal(images, index);
+  };
+
+  card.querySelector('.gallery-fullscreen')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    launchFullscreen(currentIndex);
   });
 
-  // Optional: Auto-rotate gallery every 8 seconds
+  images.forEach((img, index) => {
+    img.addEventListener('click', () => launchFullscreen(index));
+  });
+
+  // Autoplay Logic Core Loop
   let autoRotateTimer;
-  const startAutoRotate = () => {
-    autoRotateTimer = setInterval(goToNext, 8000);
+  const startRotation = () => {
+    if (totalImages > 1) autoRotateTimer = setInterval(() => updateCardGallery(currentIndex + 1), 8000);
   };
+  const stopRotation = () => clearInterval(autoRotateTimer);
 
-  const stopAutoRotate = () => {
-    clearInterval(autoRotateTimer);
-  };
-
-  // Start auto-rotate on load
-  startAutoRotate();
-
-  // Pause on hover
+  startRotation();
   const gallery = card.querySelector('.project-gallery');
-  gallery?.addEventListener('mouseenter', stopAutoRotate);
-  gallery?.addEventListener('mouseleave', startAutoRotate);
-
-  // Pause on touch
-  gallery?.addEventListener('touchstart', stopAutoRotate, { passive: true });
-  gallery?.addEventListener('touchend', startAutoRotate, { passive: true });
-
-  // Pause when fullscreen is open
-  const observer = new MutationObserver(() => {
-    if (!fullscreenModal.classList.contains('hidden')) {
-      stopAutoRotate();
-    } else {
-      startAutoRotate();
-    }
-  });
-
-  observer.observe(fullscreenModal, { attributes: true, attributeFilter: ['class'] });
-});
-
-// Global fullscreen modal handlers
-const fullscreenClose = fullscreenModal.querySelector('.fullscreen-close');
-fullscreenClose?.addEventListener('click', () => {
-  fullscreenModal.classList.add('hidden');
-  document.body.style.overflow = '';
-});
-
-// Close on ESC key
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && !fullscreenModal.classList.contains('hidden')) {
-    fullscreenModal.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
-});
-
-// Close when clicking outside the image
-fullscreenModal?.addEventListener('click', (e) => {
-  if (e.target === fullscreenModal) {
-    fullscreenModal.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
+  gallery?.addEventListener('mouseenter', stopRotation);
+  gallery?.addEventListener('mouseleave', startRotation);
+  gallery?.addEventListener('touchstart', stopRotation, { passive: true });
+  gallery?.addEventListener('touchend', startRotation, { passive: true });
 });
