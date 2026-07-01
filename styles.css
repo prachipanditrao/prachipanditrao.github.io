@@ -145,7 +145,10 @@ body {
 /* ==========================================================================
    Hero Layout & Micro-Entrance
    ========================================================================== */
-
+/* Instantly hides the fullscreen modal markup from the main page view */
+.fullscreen-modal.hidden {
+  display: none !important;
+}
 .hero-panel {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
