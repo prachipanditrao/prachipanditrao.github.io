@@ -1,11 +1,16 @@
 const navToggle = document.querySelector('.nav-toggle');
 const siteNav = document.querySelector('.site-nav');
+const siteHeader = document.querySelector('.site-header'); // Grabbed header node for mobile css targeting
 const yearElement = document.getElementById('year');
 
 if (navToggle && siteNav) {
   const updateToggleState = () => {
     const isOpen = siteNav.classList.contains('active');
     navToggle.setAttribute('aria-expanded', String(isOpen));
+    
+    if (siteHeader) {
+      siteHeader.classList.toggle('nav-active', isOpen);
+    }
   };
 
   const closeNav = () => {
@@ -246,5 +251,3 @@ fullscreenModal?.addEventListener('click', (e) => {
     document.body.style.overflow = '';
   }
 });
-
-
