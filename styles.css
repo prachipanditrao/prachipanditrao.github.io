@@ -87,8 +87,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px 0;
+  padding: 24px 0;
   border-bottom: 1px solid var(--border-muted);
+  position: relative;
 }
 
 .brand-block {
@@ -149,11 +150,10 @@ body {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 64px;
-  padding: 120px 0 80px 0;
+  padding: 40px 0 80px 0;
   align-items: center;
 }
 
-/* Sophisticated Hardware-Accelerated Entrance Hook */
 .hero-copy {
   animation: heroReveal 0.8s var(--transition-fluid) forwards;
 }
@@ -255,10 +255,7 @@ h1 {
   transform: translateY(-2px);
 }
 
-/* ==========================================================================
-   Core Stack Cloud Container (Interactive Spotlight)
-   ========================================================================== */
-
+/* Core Stack Cloud Container (Interactive Spotlight) */
 .hero-visual {
   animation: heroReveal 1s var(--transition-fluid) forwards;
 }
@@ -293,14 +290,13 @@ h1 {
   gap: 18px;
 }
 
-/* Interactive Focus Matrix Effect */
 .skill-item {
   transition: transform var(--transition-micro), opacity var(--transition-micro);
   padding: 4px 0;
 }
 
 .skill-list:hover .skill-item:not(:hover) {
-  opacity: 0.5; /* Mutes surrounding competencies to focus context reader */
+  opacity: 0.5; /* Focus spotlight state */
 }
 
 .skill-item:hover {
@@ -368,7 +364,7 @@ h1 {
 .work-card:hover {
   border-color: var(--border-focus);
   box-shadow: var(--shadow-hover);
-  transform: translateY(-4px); /* Responsive physical engagement response */
+  transform: translateY(-4px); 
 }
 
 .work-card h3 {
@@ -437,14 +433,13 @@ h1 {
   transition: transform var(--transition-fluid);
 }
 
-/* Micro Interaction: Individual achievement row reveal focus */
 .achievement-list li:hover {
   color: var(--text-main);
   transform: translateX(4px);
 }
 
 .achievement-list li:hover::before {
-  transform: rotate(90deg) scale(1.2); /* Elegant custom alignment snap */
+  transform: rotate(90deg) scale(1.2); 
 }
 
 .metric-inline {
@@ -843,7 +838,7 @@ h1 {
 }
 
 /* ==========================================================================
-   Responsive Breakpoint Overrides
+   Responsive Mobile Navigation Drawer & Breakpoints
    ========================================================================== */
 
 @media (max-width: 960px) {
@@ -865,7 +860,89 @@ h1 {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-  .site-nav {
-    display: none;
+
+  /* Force display context overrides for mobile menu links */
+  .nav-toggle {
+    display: flex !important; 
+    flex-direction: column;
+    justify-content: space-between;
+    width: 22px;
+    height: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    padding: 0;
   }
+
+  .nav-icon span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--text-main);
+    border-radius: var(--radius-pill);
+    transition: transform 0.3s var(--transition-fluid), opacity 0.3s;
+    transform-origin: left center;
+  }
+  
+  .nav-icon span:not(:last-child) {
+    margin-bottom: 4px;
+  }
+
+  /* Absolute position layout drawer for mobile screens */
+  .site-nav {
+    display: flex !important; 
+    flex-direction: column !important;
+    position: absolute;
+    top: 90px;
+    left: 24px;
+    right: 24px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-muted);
+    border-radius: var(--radius-panel);
+    padding: 24px;
+    box-shadow: var(--shadow-hover);
+    gap: 16px;
+    
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.3s var(--transition-fluid), transform 0.3s var(--transition-fluid);
+    z-index: 90;
+  }
+
+  .site-nav a {
+    margin-left: 0;
+    padding: 8px 4px;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  /* Target trigger hooks bound to your active menu script states */
+  .nav-active .site-nav {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .nav-active .nav-icon span:nth-child(1) {
+    transform: rotate(45deg) translate(-1px, -1px);
+  }
+  .nav-active .nav-icon span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .nav-active .nav-icon span:nth-child(3) {
+    transform: rotate(-45deg) translate(-1px, 1px);
+  }
+
+  .contact-item h3 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Perfectly paces the space between icon and label text */
+}
+
+.contact-icon {
+  color: var(--text-accent); /* Ties the icon color strictly to your soft blush palette */
+}
 }
