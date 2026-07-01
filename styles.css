@@ -145,10 +145,7 @@ body {
 /* ==========================================================================
    Hero Layout & Micro-Entrance
    ========================================================================== */
-/* Instantly hides the fullscreen modal markup from the main page view */
-.fullscreen-modal.hidden {
-  display: none !important;
-}
+
 .hero-panel {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -938,14 +935,146 @@ h1 {
   .nav-active .nav-icon span:nth-child(3) {
     transform: rotate(-45deg) translate(-1px, 1px);
   }
+} /* <--- THIS CLOSING BRACKET WAS MISSING ERRANTLY HOISTING THE LIGHTBOX STYLES */
 
-  .contact-item h3 {
+.contact-item h3 {
   display: inline-flex;
   align-items: center;
-  gap: 8px; /* Perfectly paces the space between icon and label text */
+  gap: 8px; 
 }
 
 .contact-icon {
-  color: var(--text-accent); /* Ties the icon color strictly to your soft blush palette */
+  color: var(--text-accent); 
 }
+
+/* ==========================================================================
+   Aesthetic Fullscreen Portfolio Lightbox (Complete Layout Reset)
+   ========================================================================== */
+
+/* 1. Base Modal Canvas Overlay Layer */
+.fullscreen-modal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(20, 17, 16, 0.6) !important; 
+  backdrop-filter: blur(20px) !important;               
+  -webkit-backdrop-filter: blur(20px) !important;
+  
+  display: flex !important; 
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 99999 !important; 
+  
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transition: opacity 0.3s var(--transition-fluid), visibility 0.3s !important;
+}
+
+/* Completely hides the canvas layout when closed */
+.fullscreen-modal.hidden {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* 2. Fluid Content Container Constraint Box */
+.fullscreen-content {
+  position: relative !important;
+  max-width: 85vw !important;
+  max-height: 85vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.fullscreen-image {
+  max-width: 100% !important;
+  max-height: 75vh !important;
+  object-fit: contain !important;
+  border-radius: var(--radius-panel) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  display: block !important;
+}
+
+/* 3. Lightbox Close Action Button */
+.fullscreen-close {
+  position: absolute !important;
+  top: -60px !important;
+  right: 0 !important;
+  background: var(--bg-card) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-muted) !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1rem !important;
+  box-shadow: var(--shadow-soft) !important;
+  transition: all var(--transition-micro) !important;
+  z-index: 100000 !important;
+}
+
+.fullscreen-close:hover {
+  transform: scale(1.05) rotate(90deg) !important;
+  color: var(--text-accent) !important;
+  border-color: var(--text-accent) !important;
+}
+
+/* 4. Navigation Buttons Placement Layout */
+.fullscreen-nav {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 95vw !important; 
+  display: flex !important;
+  justify-content: space-between !important;
+  pointer-events: none !important; 
+  z-index: 100001 !important;
+}
+
+.fullscreen-prev, .fullscreen-next {
+  background: var(--bg-card) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-muted) !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  pointer-events: auto !important; 
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: var(--shadow-soft) !important;
+  transition: all var(--transition-micro) !important;
+  font-size: 1rem !important;
+}
+
+.fullscreen-prev:hover, .fullscreen-next:hover {
+  border-color: var(--text-accent) !important;
+  color: var(--text-accent) !important;
+  transform: scale(1.05) !important;
+}
+
+/* 5. Minimalist Dynamic Counter Frame */
+.fullscreen-counter {
+  margin-top: 16px !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.75rem !important;
+  color: var(--text-main) !important;
+  background-color: var(--bg-card) !important;
+  padding: 4px 14px !important;
+  border-radius: var(--radius-pill) !important;
+  border: 1px solid var(--border-muted) !important;
+  box-shadow: var(--shadow-soft) !important;
+  display: inline-block !important;
 }
