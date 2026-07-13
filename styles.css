@@ -1078,3 +1078,246 @@ h1 {
   box-shadow: var(--shadow-soft) !important;
   display: inline-block !important;
 }
+/* ==========================================================================
+   Open Source Highlight Banner
+   ========================================================================== */
+.os-spotlight {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-muted);
+  border-left: 3px solid var(--text-accent);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-soft);
+  max-width: 540px;
+  transition: all var(--transition-fluid);
+}
+
+.os-spotlight:hover {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-hover);
+  transform: translateX(2px);
+}
+
+.os-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--bg-main);
+  background-color: var(--text-accent);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  display: inline-block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .os-badge {
+    color: var(--bg-main);
+    background-color: var(--text-accent);
+  }
+}
+
+.os-spotlight p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.os-spotlight p strong {
+  color: var(--text-main);
+}
+
+.os-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-accent);
+  text-decoration: none;
+  transition: color var(--transition-micro);
+}
+
+.os-link:hover {
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   Cohesive Article Multi-Grid Matrix
+   ========================================================================== */
+.articles-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.articles-subgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.mini-article-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-soft);
+  transition: all var(--transition-fluid);
+  display: flex;
+}
+
+.mini-article-card:hover {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+.mini-article-body {
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mini-article-body h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: var(--text-main);
+}
+
+.mini-article-body p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.text-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-accent);
+  text-decoration: none;
+  margin-top: auto;
+  align-self: flex-start;
+  transition: color var(--transition-micro);
+}
+
+.text-link:hover {
+  color: var(--text-main);
+}
+
+/* Responsive Overrides for Publications Layer */
+@media (max-width: 840px) {
+  .articles-subgrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* ==========================================================================
+   UI Spacing Compacting Layer
+   ========================================================================== */
+
+/* 1. Global Section Bounds Reduction */
+.section-block {
+  padding: 48px 0 !important; /* Compressed from 90px down to a tighter vertical flow */
+}
+
+.section-heading p {
+  margin-bottom: 28px !important; /* Halved header gap to draw contents upward */
+}
+
+/* 2. Hero & Core Stack Layout Tuning */
+.hero-panel {
+  padding: 24px 0 40px 0 !important; /* Eliminated vast empty areas above and below fold */
+  gap: 40px !important;              /* Pulled visual panel closer to copy text */
+}
+
+.hero-body {
+  margin-bottom: 24px !important;    /* Tightened separation before action layers */
+}
+
+.os-spotlight {
+  margin-bottom: 20px !important;    /* Reduced cushion space around open source highlight */
+}
+
+.panel-surface {
+  padding: 28px !important;          /* Normalized container inner borders */
+}
+
+.mono-label {
+  margin-bottom: 16px !important;    /* Pulled stack lines directly up toward label */
+}
+
+.skill-list {
+  gap: 12px !important;              /* Shrunk list row separation */
+}
+
+/* 3. Article Matrix & Showcase Grid Compression */
+.featured-article-callout {
+  margin-bottom: 28px !important;    /* Reduced huge gap below main publication frame */
+}
+
+.featured-article-content {
+  padding: 32px !important;          /* Brought inner padding into balanced limits */
+}
+
+.articles-grid {
+  gap: 24px !important;              /* Decreased card-to-subgrid vertical gutter */
+}
+
+.articles-subgrid {
+  gap: 24px !important;              /* Tighter split grid rows */
+}
+
+.mini-article-body {
+  padding: 24px !important;          /* Compressed mini card walls */
+}
+
+.mini-article-body p {
+  margin-bottom: 16px !important;    /* Tightened body gap before text link hooks */
+}
+
+.projects-grid {
+  gap: 24px !important;              /* Brought the project item columns significantly closer */
+}
+
+.project-content {
+  padding: 24px !important;          /* Made card text alignment wrap compactly */
+}
+
+.project-content strong {
+  margin-bottom: 16px !important;    /* Reduced footer margins inside project boxes */
+}
+
+/* 4. Contact Block Balancing */
+.contact-section {
+  padding: 56px 0 !important;        /* Clipped wide spacing constraints at footer entry */
+}
+
+.contact-content {
+  gap: 40px !important;              /* Pulled CTA area closer to address items */
+}
+
+.contact-info {
+  gap: 20px 24px !important;         /* Tighter cell margins across contact table */
+}
+
+.site-footer {
+  margin-top: 40px !important;       /* Shrunk massive empty void before copyright block */
+  padding: 32px 0 !important;
+}
+
+.os-inline-link {
+  color: var(--text-main);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition-micro);
+}
+
+.os-inline-link:hover {
+  color: var(--text-accent);
+}

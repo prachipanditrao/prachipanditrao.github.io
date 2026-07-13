@@ -21,6 +21,7 @@
         <nav class="site-nav">
           <a href="#work">Work</a>
           <a href="#expertise">Expertise</a>
+          <a href="#publications">Publications</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -45,11 +46,18 @@
             <p class="hero-body">
               Over 8 years of enterprise engineering experience delivering distributed microservices, parallel data pipelines, and scalable web layers using Java, Spring Boot, React, and Angular.
             </p>
+            
+            <!-- Open Source Spotlight Banner -->
+            <div class="os-spotlight">
+              <span class="os-badge">Open Source Impact</span>
+              <p>Contributed to core <strong><a href="https://github.com/spring-projects/spring-ai" target="_blank" class="os-inline-link">spring-projects/spring-ai</a></strong>. Fixed a runtime payload nested structure flaw for strict mode tool validation (#6540) coming in the 2.0.1 release train.</p>
+              <a href="https://github.com/spring-projects/spring-ai/pull/6540" target="_blank" class="os-link">View Pull Request ↗</a>
+            </div>
+
             <div class="hero-actions">
               <a class="button button-primary" href="#projects">View projects</a>
               <a class="button button-secondary" href="#contact">Get in touch</a>
             </div>
-            
           </div>
 
           <div class="hero-visual">
@@ -155,25 +163,62 @@
           </div>
         </section>
 
-        <section id="projects" class="section-block">
-  <div class="section-heading">
-    <div>
-      <h2>Featured Projects</h2>
-      <p>Production-grade architectures demonstrating full-stack engineering, reactive data pipelines, and intelligent automation systems.</p>
-    </div>
-  </div>
+        <!-- Overhauled Dynamic Article Section -->
+        <section id="publications" class="section-block section-alt">
+          <div class="section-heading">
+            <div>
+              <h2>Technical Publications</h2>
+              <p>Deep architectural perspectives exploring developer workflows, Model Context Protocol configurations, and scaling AI code verification engines.</p>
+            </div>
+          </div>
           
-          <div class="featured-article-callout">
-            <img src="assests/medium_article.png" alt="Next.js and Firebase Studio technical architectural structure layout" class="featured-article-image" loading="lazy" />
-            <div class="featured-article-content">
-              <p class="eyebrow-label">Technical Publication</p>
-              <h3>Architecting Next.js Production Applications with Firebase Studio</h3>
-              <p>A clean structural guide exploring isolated session authentication, stateless database synchronization, persistence boundaries, and continuous cloud container builds.</p>
-              <a href="https://medium.com/@prachi.panditrao/creating-next-js-application-with-firebase-studio-a-hands-on-guide-e48b44f04b9f" target="_blank">Read technical guide</a>
+          <div class="articles-grid">
+            <!-- New Featured Article: Tool Amnesia -->
+            <div class="featured-article-callout">
+              <img src="assests/medium_article_tool_amnesia.png" alt="Model Context Protocol architecture and network isolation structural diagram" class="featured-article-image" loading="lazy" />
+              <div class="featured-article-content">
+                <p class="eyebrow-label">Featured Architectural Guide</p>
+                <h3>Fixing "Tool Amnesia" in MCP Ecosystems</h3>
+                <p>An in-depth system design exploration on mitigating context window explosion and token bloat within large-scale agentic execution graphs using specialized Java Gateway routers.</p>
+                <a href="https://medium.com/towards-artificial-intelligence/fixing-tool-amnesia-in-model-context-protocol-ecosystems-c3fa03c90704?sharedUserId=prachi.panditrao" target="_blank">Read technical guide ↗</a>
+              </div>
+            </div>
+
+            <!-- Subgrid: The Green Avalanche and Firebase Studio -->
+            <div class="articles-subgrid">
+              <article class="mini-article-card">
+                <div class="mini-article-body">
+                  <span class="eyebrow-label">Developer Productivity</span>
+                  <h3>The Green Avalanche: Automated Verification</h3>
+                  <p>Analyzing the widening paradigm shift as AI generation code velocities completely outpace human asynchronous code review bounds.</p>
+                  <a href="https://medium.com/@prachi.panditrao/the-green-avalanche-ai-can-generate-code-faster-than-humans-can-verify-it-0f6becef39c6" target="_blank" class="text-link">Read on Medium →</a>
+                </div>
+              </article>
+
+              <article class="mini-article-card">
+                <div class="mini-article-body">
+                  <span class="eyebrow-label">System Design Insights</span>
+                  <h3>Architecting Next.js Production Applications with Firebase Studio</h3>
+                  <p>A clean structural guide exploring isolated session authentication, stateless database synchronization, persistence boundaries, and continuous cloud container builds.</p>
+                  <a href="https://medium.com/@prachi.panditrao/creating-next-js-application-with-firebase-studio-a-hands-on-guide-e48b44f04b9f" target="_blank" class="text-link">Read on Medium →</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" class="section-block">
+          <div class="section-heading">
+            <div>
+              <h2>Featured Projects</h2>
+              <p>Production-grade architectures demonstrating full-stack engineering, reactive data pipelines, and intelligent automation systems.</p>
             </div>
           </div>
 
+          <!-- All 5 Real Projects Grid Layout -->
           <div class="projects-grid">
+            
+            <!-- 1. Dynamic Swagger MCP Agent -->
             <article class="project-card">
               <div class="project-gallery">
                 <div class="gallery-viewport">
@@ -198,23 +243,50 @@
               </div>
               <div class="project-content">
                 <h3>Dynamic Swagger MCP Agent</h3>
-                <p>A modern Model Context Protocol server built with Java and Spring AI to dynamically intercept, map, and autonomously validate complex live OpenAPI configurations.</p>
+                <p>A Model Context Protocol server built with Java and Spring AI to dynamically intercept, map, and autonomously validate complex live OpenAPI configurations.</p>
                 <p><strong>Stack:</strong> Java, Spring Boot, Spring AI MCP Framework</p>
                 <a href="https://github.com/prachipanditrao/dynamic_swagger_mcp_agent" target="_blank">Access Repository</a>
               </div>
             </article>
 
+            <!-- 2. GuardRail -->
             <article class="project-card">
               <div class="project-gallery">
                 <div class="gallery-viewport">
                   <div class="gallery-track">
-                    <img src="assests/ticket_booking_login.png" alt="Reactive System - Encrypted Authentication Layer UI" loading="lazy" />
-                    <img src="assests/ticket_booking_laptop_1.png" alt="Reactive System - Live Ticket Allocation Grid Matrix" loading="lazy" />
-                    <img src="assests/ticket_booking_laptop_2.png" alt="Reactive System - Dynamic Order Completion State Machine" loading="lazy" />
-                    <img src="assests/ticket_booking_laptop_3.png" alt="Reactive System - Transaction Metrics Engine Interface" loading="lazy" />
-                    <img src="assests/ticket_Booking_mobile_1.png" alt="Reactive System - Mobile Responsive View Allocation" loading="lazy" />
-                    <img src="assests/ticket_booking_mobile_2.png" alt="Reactive System - Token Generation View Layout" loading="lazy" />
-                    <img src="assests/ticket_booking_backend.png" alt="Reactive System - Non-Blocking Stream Server Benchmarks" loading="lazy" />
+                    <img src="assests/build_success.png" alt="GuardRail dashboard showing build success status and validation rules summary in a development monitoring interface" loading="lazy" />
+                    <img src="assests/build_failure.png" alt="GuardRail dashboard showing build failure status and validation rules summary in a development monitoring interface" loading="lazy" />
+                  </div>
+                </div>
+                <div class="gallery-controls">
+                  <button class="gallery-prev" aria-label="Previous project image">❮</button>
+                  <div class="gallery-dots">
+                    <button class="dot active" aria-label="Go to image 1"></button>
+                  </div>
+                  <button class="gallery-next" aria-label="Next project image">❯</button>
+                </div>
+                <button class="gallery-fullscreen" aria-label="View fullscreen">⛶</button>
+              </div>
+              <div class="project-content">
+                <h3>GuardRail</h3>
+                <p>An automated validation and rules engine built in Java to parse, inspect, and enforce architectural constraints on AI-generated system payloads, mitigating runtime validation risks.</p>
+                <p><strong>Stack:</strong> Java, Static Analysis Hooks, Structured Validation Engines</p>
+                <a href="https://github.com/prachipanditrao/GuardRail" target="_blank">Access Repository</a>
+              </div>
+            </article>
+
+            <!-- 3. Movie Ticket Booking System -->
+            <article class="project-card">
+              <div class="project-gallery">
+                <div class="gallery-viewport">
+                  <div class="gallery-track">
+                    <img src="assests/ticket_booking_login.png" alt="Movie Ticket Booking System - Encrypted Authentication Layer UI" loading="lazy" />
+                    <img src="assests/ticket_booking_laptop_1.png" alt="Movie Ticket Booking System - Live Ticket Allocation Grid Matrix" loading="lazy" />
+                    <img src="assests/ticket_booking_laptop_2.png" alt="Movie Ticket Booking System - Dynamic Order Completion State Machine" loading="lazy" />
+                    <img src="assests/ticket_booking_laptop_3.png" alt="Movie Ticket Booking System - Transaction Metrics Engine Interface" loading="lazy" />
+                    <img src="assests/ticket_Booking_mobile_1.png" alt="Movie Ticket Booking System - Mobile Responsive View Allocation" loading="lazy" />
+                    <img src="assests/ticket_booking_mobile_2.png" alt="Movie Ticket Booking System - Token Generation View Layout" loading="lazy" />
+                    <img src="assests/ticket_booking_backend.png" alt="Movie Ticket Booking System - Non-Blocking Stream Server Benchmarks" loading="lazy" />
                   </div>
                 </div>
                 <div class="gallery-controls">
@@ -233,18 +305,19 @@
                 <button class="gallery-fullscreen" aria-label="View fullscreen">⛶</button>
               </div>
               <div class="project-content">
-                <h3>Non-Blocking Transaction System</h3>
-                <p>A fully asynchronous event-driven booking service engineered with Spring WebFlux, processing non-interlocking operations via reactive data patterns and stateless cryptographic sessions.</p>
+                <h3>Movie Ticket Booking System</h3>
+                <p>A fully asynchronous, event-driven ticket management service engineered with Spring WebFlux to process concurrent operations via non-blocking data layers.</p>
                 <p><strong>Stack:</strong> Java, Spring WebFlux, Reactive MongoDB, JWT Core</p>
                 <a href="https://github.com/prachipanditrao/Movie-Ticket-Booking-System" target="_blank">Access Repository</a>
               </div>
             </article>
 
+            <!-- 4. Air Quality -->
             <article class="project-card">
               <div class="project-gallery">
                 <div class="gallery-viewport">
                   <div class="gallery-track">
-                    <img src="assests/air_quality.png" alt="Air Quality Aggregator - Asynchronous Aggregation Interface" loading="lazy" />
+                    <img src="assests/air_quality.png" alt="Air Quality Aggregator Interface" loading="lazy" />
                   </div>
                 </div>
                 <div class="gallery-controls">
@@ -257,18 +330,19 @@
                 <button class="gallery-fullscreen" aria-label="View fullscreen">⛶</button>
               </div>
               <div class="project-content">
-                <h3>Asynchronous Metrics Aggregator</h3>
-                <p>A strongly-typed compilation layer built to asynchronously gather, stream, and evaluate multi-source environmental data inputs across varying timelines.</p>
+                <h3>Air Quality</h3>
+                <p>An asynchronous metrics gathering tool built to track, aggregate, and process multi-source streaming environmental data inputs across varying timelines.</p>
                 <p><strong>Stack:</strong> TypeScript, Async Stream Hooks, Web API Matrices</p>
                 <a href="https://github.com/prachipanditrao/Air-Quality" target="_blank">Access Repository</a>
               </div>
             </article>
 
+            <!-- 5. Expense Management -->
             <article class="project-card">
               <div class="project-gallery">
                 <div class="gallery-viewport">
                   <div class="gallery-track">
-                    <img src="assests/expense_management.png" alt="Ledger Core - Realtime Banking Node Pipeline Sync" loading="lazy" />
+                    <img src="assests/expense_management.png" alt="Expense Management Interface" loading="lazy" />
                   </div>
                 </div>
                 <div class="gallery-controls">
@@ -281,66 +355,65 @@
                 <button class="gallery-fullscreen" aria-label="View fullscreen">⛶</button>
               </div>
               <div class="project-content">
-                <h3>Real-Time Financial Ledger Analysis</h3>
-                <p>An isolated dashboard combining client modular structures with decoupled backends to ingest and isolate continuous webhook transactions using the Plaid ecosystem components.</p>
+                <h3>Expense Management</h3>
+                <p>A clean financial dashboard UI combining a modular user architecture with decoupled integration points to track and isolate multi-source webhook transactions.</p>
                 <p><strong>Stack:</strong> Angular, Node.js, TypeScript, Angular Material Data Viewports</p>
                 <a href="https://github.com/prachipanditrao/Expense-Management" target="_blank">Access Repository</a>
               </div>
             </article>
+
           </div>
         </section>
 
         <section id="contact" class="section-block contact-section">
-  <div class="contact-content">
-    
-    <div class="contact-cta">
-      <h2>Get in touch</h2>
-      <p>
-        I am open to senior engineering opportunities, technical collaborations, or just connecting with fellow developers. Feel free to reach out via email or any of my social profiles.
-      </p>
-    </div>
+          <div class="contact-content">
+            <div class="contact-cta">
+              <h2>Get in touch</h2>
+              <p>
+                I am open to senior engineering opportunities, technical collaborations, or just connecting with fellow developers. Feel free to reach out via email or any of my social profiles.
+              </p>
+            </div>
 
-    <div class="contact-info">
-      <div class="contact-item">
-        <h3>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          Email
-        </h3>
-        <a href="mailto:prachipanditrao@gmail.com">prachipanditrao@gmail.com</a>
-      </div>
+            <div class="contact-info">
+              <div class="contact-item">
+                <h3>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  Email
+                </h3>
+                <a href="mailto:prachipanditrao@gmail.com">prachipanditrao@gmail.com</a>
+              </div>
 
-      <div class="contact-item">
-        <h3>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-          LinkedIn
-        </h3>
-        <a href="https://www.linkedin.com/in/prachi-panditrao-42b278257/" target="_blank">linkedin.com/in/prachi-panditrao-42b278257</a>
-      </div>
+              <div class="contact-item">
+                <h3>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                  LinkedIn
+                </h3>
+                <a href="https://www.linkedin.com/in/prachi-panditrao-42b278257/" target="_blank">linkedin.com/in/prachi-panditrao</a>
+              </div>
 
-      <div class="contact-item">
-        <h3>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-          GitHub
-        </h3>
-        <a href="https://github.com/prachipanditrao" target="_blank">github.com/prachipanditrao</a>
-      </div>
+              <div class="contact-item">
+                <h3>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  GitHub
+                </h3>
+                <a href="https://github.com/prachipanditrao" target="_blank">github.com/prachipanditrao</a>
+              </div>
 
-      <div class="contact-item">
-        <h3>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-          Resume
-        </h3>
-        <a href="Prachi_Panditrao_Senior_FullStack_Bangalore.pdf" download class="download-link">
-          <span>Download PDF CV</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 10V16M12 16L9 13M12 16L15 13M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H14L19 8V19C19 20.1046 18.1046 21 17 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
+              <div class="contact-item">
+                <h3>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  Resume
+                </h3>
+                <a href="Prachi_Panditrao_Senior_FullStack_Bangalore_2026.pdf" download="Prachi_Panditrao_Senior_FullStack_Bangalore_2026.pdf" target="_blank" class="download-link">
+                  <span>Download PDF CV</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 10V16M12 16L9 13M12 16L15 13M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H14L19 8V19C19 20.1046 18.1046 21 17 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer class="site-footer">
